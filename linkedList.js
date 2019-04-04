@@ -122,10 +122,10 @@ function main() {
   SLL.insertLast('Husker');
   SLL.insertLast('Starbuck');
   SLL.insertLast('Tauhida');
-  //SLL.remove('squirrel');
-  //SLL.insertBefore('Athena', 'Starbuck');
-  //SLL.insertAfter('Athena', 'Boomer');
-  SLL.insertAt('Athena', 2);
+  SLL.remove('Tauhida');
+  SLL.insertBefore('Athena', 'Boomer');
+  SLL.insertAfter('Hotdog', 'Helo');
+  SLL.insertAt('Kat', 3);
   console.log(JSON.stringify(SLL));
 }
 
