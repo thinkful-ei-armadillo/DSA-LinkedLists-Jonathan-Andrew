@@ -26,6 +26,51 @@ class LinkedList {
     }
   }
 
+  insertAt(item, pos) {
+    let currNode = this.head;
+    let previousNode = this.head;
+    let i = 0;
+
+    if (pos === 0) {
+      this.head = new _Node(item, this.head);
+      return;
+    }
+
+    while (i !== pos) {
+      if (currNode.next === null) {
+        return console.log('Index does not exist');
+      }
+      previousNode = currNode;
+      currNode = currNode.next;
+      i++;
+    }
+    previousNode.next = new _Node(item, currNode);
+  }
+
+  insertAfter(item, keyValue) {
+    let currNode = this.head;
+
+    while (currNode.value !== keyValue) {
+      if (currNode.next !== null) {
+        currNode = currNode.next;
+      }
+    }
+    currNode.next = new _Node(item, currNode.next);
+  }
+
+  insertBefore(item, keyValue) {
+    let currNode = this.head;
+    let previousNode = this.head;
+
+    while (currNode.value !== keyValue) {
+      if (currNode.next !== null) {
+        previousNode = currNode;
+        currNode = currNode.next;
+      }
+    }
+    previousNode.next = new _Node(item, currNode);
+  }
+
   find(item) {
     let currNode = this.head;
 
@@ -56,8 +101,8 @@ class LinkedList {
     let previousNode = this.head;
 
     while ((currNode !== null) && (currNode.value !== item)) {
-      previousNode = currNode;
       currNode = currNode.next;
+      previousNode = currNode;
     }
     if (currNode === null) {
       console.log('Item not found');
@@ -72,7 +117,31 @@ class LinkedList {
 function main() {
   let SLL = new LinkedList();
   SLL.insertFirst('Apollo');
-  console.log(SLL);
+  SLL.insertLast('Boomer');
+  SLL.insertLast('Helo');
+  SLL.insertLast('Husker');
+  SLL.insertLast('Starbuck');
+  SLL.insertLast('Tauhida');
+  //SLL.remove('squirrel');
+  //SLL.insertBefore('Athena', 'Starbuck');
+  //SLL.insertAfter('Athena', 'Boomer');
+  SLL.insertAt('Athena', 2);
+  console.log(JSON.stringify(SLL));
 }
 
 main();
+
+//group review
+function insertInSortedOrder(SLL, item) {
+  // input: C --> D --> M --> N insert E
+  // output: C --> D --> E --> M --> N
+  let node = SLL.head;
+  let previousNode = SLL.head;
+  while (node !== null) {
+    if (node.value > item) {
+      previousNode = node;
+      node = node.next;
+    }
+  }
+  previousNode.next = new _Node(item, node);
+}
