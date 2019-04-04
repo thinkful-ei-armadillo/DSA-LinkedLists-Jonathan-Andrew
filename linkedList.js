@@ -38,7 +38,7 @@ class LinkedList {
 
     while (i !== pos) {
       if (currNode.next === null) {
-        return console.log('Index does not exist');
+        return console.log("Index does not exist");
       }
       previousNode = currNode;
       currNode = currNode.next;
@@ -100,33 +100,91 @@ class LinkedList {
     let currNode = this.head;
     let previousNode = this.head;
 
-    while ((currNode !== null) && (currNode.value !== item)) {
-      currNode = currNode.next;
+    while (currNode !== null && currNode.value !== item) {
       previousNode = currNode;
+      currNode = currNode.next;
     }
     if (currNode === null) {
-      console.log('Item not found');
+      console.log("Item not found");
       return;
     }
     previousNode.next = currNode.next;
   }
-
 }
 
+function display(sll) {
+  let currNode = sll.head;
+  let i = 0;
+  while (currNode !== null) {
+    console.log(i, currNode)
+    i++
+    currNode = currNode.next;
+  }
+}
+
+function size(sll) {
+  let currNode = sll.head;
+  let i = 0;
+  while(currNode !== null){
+    i++
+    currNode = currNode.next
+  }
+  return i;
+}
+
+function isEmpty(sll){
+  if(sll.head === null){
+    return 'Empty';
+  }
+  return 'Not empty'
+}
+
+function findPrevious(sll, item){
+  let currNode = sll.head;
+  let prevNode = sll.head;
+
+  if(sll.head === null){
+    return 'Empty list'
+  }
+
+  if(sll.head.value === item){
+    return 'No previous value';
+  }
+
+  while(currNode.value !== item){
+    prevNode = currNode;
+    currNode = currNode.next;
+  }
+  return prevNode;
+}
+
+function findLast(sll){
+  let currNode = sll.head;
+
+  while(currNode.next !== null){
+    currNode = currNode.next;
+  }
+  return currNode;
+}
 
 function main() {
   let SLL = new LinkedList();
-  SLL.insertFirst('Apollo');
-  SLL.insertLast('Boomer');
-  SLL.insertLast('Helo');
-  SLL.insertLast('Husker');
-  SLL.insertLast('Starbuck');
-  SLL.insertLast('Tauhida');
-  SLL.remove('Tauhida');
-  SLL.insertBefore('Athena', 'Boomer');
-  SLL.insertAfter('Hotdog', 'Helo');
-  SLL.insertAt('Kat', 3);
+  SLL.insertFirst("Apollo");
+  SLL.insertLast("Boomer");
+  SLL.insertLast("Helo");
+  SLL.insertLast("Husker");
+  SLL.insertLast("Starbuck");
+  SLL.insertLast("Tauhida");
+  SLL.remove("Tauhida");
+  // SLL.insertBefore("Athena", "Boomer");
+  // SLL.insertAfter("Hotdog", "Helo");
+  // SLL.insertAt("Kat", 3);
   console.log(JSON.stringify(SLL));
+  //display(SLL);
+  //console.log(size(SLL));
+  //console.log(isEmpty(SLL));
+  //console.log(findPrevious(SLL, 'Apollo'))
+  console.log(findLast(SLL));
 }
 
 main();
